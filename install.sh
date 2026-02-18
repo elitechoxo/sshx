@@ -4,7 +4,7 @@
 
 set -e
 
-REPO="https://github.com/yourname/sshx"   # update this when you publish
+REPO="https://github.com/elitechoxo/SSHX-tunnel"   # update this when you publish
 BIN_DIR="${HOME}/.local/bin"
 BIN="${BIN_DIR}/sshx"
 
