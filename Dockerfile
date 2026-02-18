@@ -1,5 +1,5 @@
 # ── Build stage ───────────────────────────────────────────────────────────────
-FROM rust:1.80-slim AS builder
+FROM rust:1.85-slim AS builder
 
 WORKDIR /app
 COPY . .
@@ -17,6 +17,6 @@ COPY --from=builder /app/target/release/sshx-server /usr/local/bin/sshx-server
 # Control port
 EXPOSE 7835
 # Tunnel port range
-EXPOSE 2000-65000
+EXPOSE 2000-9000
 
 ENTRYPOINT ["sshx-server"]
