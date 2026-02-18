@@ -1,0 +1,65 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"  # triggers on v0.1.0, v1.0.0 etc
+
+jobs:
+  build:
+    name: Build ${{ matrix.target }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-musl
+            bin: sshx
+            out: sshx-linux-x86_64
+
+          - os: ubuntu-latest
+            target: aarch64-unknown-linux-musl
+            bin: sshx
+            out: sshx-linux-arm64
+
+          - os: macos-latest
+            target: x86_64-apple-darwin
+            bin: sshx
+            out: sshx-macos-x86_64
+
+          - os: macos-latest
+            target: aarch64-apple-darwin
+            bin: sshx
+            out: sshx-macos-arm64
+
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+            bin: sshx.exe
+            out: sshx-windows-x86_64.exe
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+
+      - name: Install musl tools (Linux)
+        if: contains(matrix.target, 'musl')
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y musl-tools cross
+
+      - name: Build
+        run: cargo build --release -p sshx --target ${{ matrix.target }}
+
+      - name: Rename binary
+        shell: bash
+        run: |
+          cp target/${{ matrix.target }}/release/${{ matrix.bin }} ${{ matrix.out }}
+
+      - name: Upload to release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ matrix.out }}
