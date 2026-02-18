@@ -9,7 +9,7 @@ use tokio::io::{AsyncRead, AsyncWrite};
 use tokio::time::timeout;
 use tokio_util::codec::{AnyDelimiterCodec, Framed, FramedParts};
 
-pub const CONTROL_PORT: u16 = 7835;
+pub const CONTROL_PORT: u16 = 12267;
 pub const MAX_FRAME: usize = 512;
 pub const HANDSHAKE_TIMEOUT: Duration = Duration::from_secs(5);
 
