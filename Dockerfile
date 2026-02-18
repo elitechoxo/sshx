@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/
 COPY --from=builder /app/target/release/sshx-server /usr/local/bin/sshx-server
 
 # Control port
-EXPOSE 7835
+EXPOSE 12267
 # Tunnel port range
 EXPOSE 2000-9000
 
