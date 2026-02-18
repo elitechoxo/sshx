@@ -35,7 +35,7 @@ sshx client  ──────►  :7835  (control)   ◄──────  an
 ### Deploy
 
 ```bash
-git clone https://github.com/elitechoxo/SSHX-tunnel
+git clone https://github.com/elitechoxo/sshx
 cd SSHX-tunnel
 
 # Optional: set a secret so only your clients can connect
