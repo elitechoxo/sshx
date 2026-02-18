@@ -1,6 +1,6 @@
 //! Shared protocol definitions for sshx tunnel.
 //!
-//! Control plane: null-delimited JSON on port 7835.
+//! Control plane: null-delimited JSON on port 12267.
 //! Data plane:   raw TCP copy_bidirectional.
 
 use std::time::Duration;
@@ -13,7 +13,7 @@ use tokio::time::timeout;
 use tokio_util::codec::{AnyDelimiterCodec, Framed, FramedParts};
 
 /// Control port — clients connect here first.
-pub const CONTROL_PORT: u16 = 7835;
+pub const CONTROL_PORT: u16 = 12267;
 
 /// Max JSON frame size (bytes).
 pub const MAX_FRAME: usize = 512;
