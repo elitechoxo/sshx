@@ -35,8 +35,8 @@ sshx client  ──────►  :7835  (control)   ◄──────  an
 ### Deploy
 
 ```bash
-git clone <this repo>
-cd sshx
+git clone https://github.com/elitechoxo/SSHX-tunnel
+cd SSHX-tunnel
 
 # Optional: set a secret so only your clients can connect
 # Edit docker-compose.yml → SSHX_SECRET=yourpassword
