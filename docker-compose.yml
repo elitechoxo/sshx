@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  sshx-server:
+    build: .
+    restart: always
+    ports:
+      - "7835:7835"          # control plane
+      - "2000-9000:2000-9000" # tunnel ports (adjust range as needed)
+    environment:
+      SSHX_SECRET: ""        # set a secret here or leave empty for open access
+      SSHX_MIN_PORT: "2000"
+      SSHX_MAX_PORT: "9000"
+      SSHX_BIND: "0.0.0.0"
+      RUST_LOG: "info"
